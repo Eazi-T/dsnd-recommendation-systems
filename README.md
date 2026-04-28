@@ -146,7 +146,7 @@ A more meaningful evaluation would require **online A/B testing** — splitting 
 
 - Dataset and project framework provided by [IBM Watson Studio](https://www.ibm.com/cloud/watson-studio) via [Udacity](https://www.udacity.com/)
 - Completed as part of the **Udacity Data Science Nanodegree**
-- 
+
 ## License
 
 [License](LICENSE.txt)
