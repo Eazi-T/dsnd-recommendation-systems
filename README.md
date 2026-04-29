@@ -15,7 +15,6 @@ starter/
 ├── Recommendations_with_IBM.ipynb   # Main project notebook
 ├── project_tests.py                 # Automated grading test suite
 └── data/
-    ├── articles_community.csv       # Article metadata (title, content)
     └── user-item-interactions.csv   # User-article interaction logs
 ```
 
