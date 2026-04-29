@@ -15,7 +15,8 @@ starter/
 ├── Recommendations_with_IBM.ipynb   # Main project notebook
 ├── project_tests.py                 # Automated grading test suite
 └── data/
-    └── user-item-interactions.csv   # User-article interaction logs
+    ├── user-item-interactions.csv   # User-article interaction logs (user_id, article_id, title)
+    └── articles_community.csv       # Article metadata provided by Udacity (not used in this project)
 ```
 
 ---
@@ -50,7 +51,7 @@ Builds a binary user-item matrix (5,149 users × 714 articles) and finds similar
 
 Key functions:
 - `create_user_item_matrix(df)` — creates the binary interaction matrix
-- `find_similar_users(user_id)` — returns users ordered by dot-product similarity
+- `find_similar_users(user_id)` — returns users ordered by cosine similarity
 - `get_top_sorted_users(user_id)` — returns a DataFrame of neighbors sorted by cosine similarity, then by number of total interactions to break ties
 - `user_user_recs(user_id, m)` — basic collaborative filtering recommendations
 - `user_user_recs_part2(user_id, m)` — improved version that collects all candidate articles first, then ranks them by global popularity before returning the top `m`
@@ -77,7 +78,7 @@ Applies **TruncatedSVD** from scikit-learn to the full user-item matrix to learn
 ## Key Design Decisions
 
 **Cosine similarity vs. dot product for user similarity**  
-Cosine similarity is used in `get_top_sorted_users` because it normalizes for user activity level — highly active users don't dominate similarity scores simply by having interacted with more articles.
+Cosine similarity is used in both `find_similar_users` and `get_top_sorted_users` because it normalizes for user activity level — highly active users don't dominate similarity scores simply by having interacted with more articles. This produces fairer, more meaningful comparisons across users with different levels of engagement.
 
 **Collecting all candidates before ranking in `user_user_recs_part2`**  
 Gathering all candidate articles into a set first, then ranking by global popularity, ensures the final recommendations reflect the most consistently engaging content rather than the arbitrary order in which similar users were traversed.
